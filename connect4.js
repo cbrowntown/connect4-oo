@@ -12,7 +12,7 @@ class Game {
     this.height = height;
     this.board = [];
     // should I put the above code lower in a function?
-    this.currPlayer = 1;
+    this.currPlayer = p1;
     this.makeBoard();
     this.makeHtmlBoard();
   }
@@ -25,7 +25,7 @@ class Game {
 
   makeHtmlBoard() {
     const board = document.getElementById('board');
-
+    board.innerHTML = "";
     // make column tops (clickable area for adding a piece to that column)
     const top = document.createElement('tr');
     top.setAttribute('id', 'column-top');
@@ -93,7 +93,7 @@ class Game {
 
     // check for win
     if (this.checkForWin()) {
-      return this.endGame(`Player ${this.currPlayer} won!`);
+      return this.endGame(`The ${this.currPlayer.color} player won!`);
     }
 
     // check for tie
