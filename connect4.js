@@ -5,24 +5,25 @@
  * board fills (tie)
  */
 
+
+
 class Game {
   constructor(p1, p2, height = 6, width = 7) {
     this.players = [p1, p2];
     this.width = width;
     this.height = height;
-    this.board = [];
-    // should I put the above code lower in a function?
     this.currPlayer = p1;
     this.makeBoard();
     this.makeHtmlBoard();
   }
-
+  
   makeBoard() {
+    this.board = [];
     for (let y = 0; y < this.height; y++) {
       this.board.push(Array.from({ length: this.width }));
     }
   }
-
+  
   makeHtmlBoard() {
     const board = document.getElementById('board');
     board.innerHTML = "";
@@ -67,7 +68,7 @@ class Game {
     piece.classList.add('piece');
     piece.style.backgroundColor = this.currPlayer.color;
     piece.style.top = -50 * (y + 2);
-    // what does above line do?
+    // above line is old code that isn't getting used
 
     const spot = document.getElementById(`${y}-${x}`);
     spot.append(piece);
@@ -80,7 +81,7 @@ class Game {
   handleClick(evt) {
     // get x from ID of clicked cell
     const x = +evt.target.id;
-    // ***what does plus sign do above?
+    // + = shorthand for parseInt - turns string into number. all form data is a string.
 
     // get next spot in column (if none, ignore click)
     const y = this.findSpotForCol(x);
@@ -152,8 +153,6 @@ document.getElementById('start-game').addEventListener('click', () => {
   let p1 = new Player(document.getElementById('p1-color').value);
   let p2 = new Player(document.getElementById('p2-color').value);
   new Game(p1, p2);
-  console.log(p1);
-  console.log(p2);
 });
 
 
